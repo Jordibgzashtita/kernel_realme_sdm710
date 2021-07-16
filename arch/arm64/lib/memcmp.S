@@ -107,4 +107,5 @@ ENTRY(memcmp)
 	b.eq	.Lbyte_loop
 	sub	result, data1w, data2w
 	ret
-END(memcmp)
+
+SYM_FUNC_END_PI(memcmp)

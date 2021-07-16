@@ -287,7 +287,4 @@ CPU_BE( orr	syndrome, diff, has_nul )
 	sub	result, data1, data2
 	ret
 
-.Lret0:
-	mov	result, #0
-	ret
-ENDPIPROC(strncmp)
+SYM_FUNC_END_PI(strncmp)

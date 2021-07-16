@@ -52,7 +52,7 @@ uao_user_alternative 9f, strb, sttrb, wzr, x0, 0
 5:	mov	x0, #0
 	uaccess_disable_not_uao x2, x3
 	ret
-ENDPROC(__arch_clear_user)
+SYM_FUNC_END(__arch_clear_user)
 
 	.section .fixup,"ax"
 	.align	2

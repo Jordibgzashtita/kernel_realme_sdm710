@@ -99,11 +99,14 @@ CPU_BE( bic	has_nul2, tmp1, tmp2 )
 	/* Big-endian.  Early bytes are at MSB.  */
 CPU_BE( lsl	tmp2, tmp2, tmp1 )	/* Shift (tmp1 & 63).  */
 	/* Little-endian.  Early bytes are at LSB.  */
-CPU_LE( lsr	tmp2, tmp2, tmp1 )	/* Shift (tmp1 & 63).  */
+	lsl	tmp1, tmp4, tmp1	/* Shift (tmp1 & 63).  */
+#endif
+	orr	tmp1, tmp1, REP8_80
+	orn	data1, data1, tmp1
+	orn	tmp2, data2, tmp1
+	tst	srcin, 8
+	csel	data1, data1, tmp4, eq
+	csel	data2, data2, tmp2, eq
+	b	L(page_cross_entry)
 
-	orr	data1, data1, tmp2
-	orr	data2a, data2, tmp2
-	csinv	data1, data1, xzr, le
-	csel	data2, data2, data2a, le
-	b	.Lrealigned
-ENDPIPROC(strlen)
+SYM_FUNC_END_PI(strlen)
