@@ -297,7 +297,7 @@ static int alarmtimer_suspend(struct device *dev)
         alarmtimer_suspend_flag_clear();
         alarmtimer_busy_flag_set();
         #endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
-		__pm_wakeup_event(ws, ktime_to_ms(min) + 1);
+		__pm_wakeup_event(ws, ktime_to_ms(min) + 5);
 		return -EBUSY;
 	}
 
